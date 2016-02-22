@@ -12,8 +12,8 @@ RUN apt-get update -y \
 
 RUN apt-get install -y docker-engine
 
-RUN cat /etc/profile \
-    && cat ~/.bash_profile
-RUN docker info
+# RUN cat /etc/profile \
+#     && cat ~/.bash_profile
+# RUN docker info
             
-RUN service nginx start
+# RUN service nginx start
