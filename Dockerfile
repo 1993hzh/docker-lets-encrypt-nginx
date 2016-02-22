@@ -12,8 +12,7 @@ RUN apt-get update -y \
 
 RUN apt-get install -y docker-engine
 
-RUN gpasswd -a root docker \
-    && service docker restart \
+RUN service docker start \
     && newgrp docker
 RUN docker info
             
