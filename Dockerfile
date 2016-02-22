@@ -13,7 +13,6 @@ RUN apt-get update -y \
 RUN apt-get install -y docker-engine
 
 RUN service docker start \
-    && docker -d \
     && docker info \
     && docker run hello-world
 
