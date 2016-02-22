@@ -12,7 +12,7 @@ RUN apt-get update -y \
 
 RUN apt-get install -y docker-engine
 
-RUN usermod -aG docker root
+RUN usermod -aG docker root \
     && service docker start \
     && newgrp docker
 RUN docker info
