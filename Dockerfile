@@ -10,10 +10,11 @@ RUN apt-get update -y \
     && echo deb https://apt.dockerproject.org/repo debian-jessie main >> /etc/apt/sources.list.d/docker.list \
     && apt-get -y update
 
-RUN  apt-get install -y docker-engine
+RUN apt-get install -y docker-engine
 
 RUN service docker start \
-    && docker info
+    && docker -d \
+    && docker info \
     && docker run hello-world
 
             
