@@ -12,7 +12,7 @@ RUN apt-get update -y \
 
 RUN apt-get install -y docker-engine
 
-RUN su -l root \
+RUN exec bash --login \
     && service docker start \
     && docker run --rm -p 443:443 -p 80:80 --name letsencrypt \
     -v "/etc/letsencrypt:/etc/letsencrypt" \
