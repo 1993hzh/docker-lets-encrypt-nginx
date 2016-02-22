@@ -4,7 +4,7 @@ RUN service nginx stop
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY cli.ini /etc/letsencrypt/cli.ini
 
-RUN apt-get purge -y lxc-docker* \
+RUN apt-get purge -y *lxc-docker* \
     && apt-get purge -y docker.io* \
     && apt-get update -y \
     && apt-get install -y apt-transport-https ca-certificates \
