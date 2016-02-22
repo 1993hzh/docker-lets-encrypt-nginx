@@ -1,6 +1,7 @@
 FROM centos:latest
 
-RUN echo '[nginx] \
+RUN touch /etc/yum.repos.d/nginx.repo \
+    && echo '[nginx] \
     name=nginx repo \
     baseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \
     gpgcheck=0 \
