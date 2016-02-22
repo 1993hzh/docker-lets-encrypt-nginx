@@ -14,7 +14,7 @@ COPY cli.ini /etc/letsencrypt/cli.ini
 RUN yum update -y \
     && curl -fsSL https://get.docker.com/ | sh
 
-RUN docker info
+RUN docker daemon
 # RUN cat /etc/profile \
 #     && cat ~/.bash_profile
 # RUN docker info
