@@ -12,9 +12,7 @@ RUN apt-get update -y \
 
 RUN apt-get install -y docker-engine
 
-RUN echo eval "$(docker-machine env default)" >> /etc/profile \
-    && source /etc/profile
 RUN service docker start \
-    && docker info
+    && service docker status
             
 RUN service nginx start
