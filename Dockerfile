@@ -8,13 +8,11 @@ RUN echo "[nginx]" >> /etc/yum.repos.d/nginx.repo \
     
 RUN yum install -y nginx
 
-RUN systemctl stop nginx.service
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY cli.ini /etc/letsencrypt/cli.ini
 
 RUN yum update -y \
-    && curl -fsSL https://get.docker.com/ | sh \
-    && systemctl start docker
+    && curl -fsSL https://get.docker.com/ | sh
 
 RUN docker info
 # RUN cat /etc/profile \
