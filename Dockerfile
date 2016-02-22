@@ -1,11 +1,13 @@
 FROM centos:latest
 
-RUN touch /etc/yum.repos.d/nginx.repo \
-    && echo "[nginx] \
-        name=nginx repo \
-        baseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \
-        gpgcheck=0 \
-        enabled=1" >> /etc/yum.repos.d/nginx.repo
+cat cat >> /etc/yum.repos.d/nginx.repo <<EOF \
+    [nginx] \
+    name=nginx repo \
+    baseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \
+    gpgcheck=0 \
+    enabled=1 \
+    EOF
+
 RUN yum install -y nginx
 
 RUN service nginx stop
