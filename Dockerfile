@@ -12,7 +12,7 @@ RUN apt-get update -y \
 
 RUN apt-get install -y docker-engine
 
-RUN gpasswd -a root docker
+RUN gpasswd -a root docker \
     && service docker start \
     && newgrp docker \
     && docker run --rm -p 443:443 -p 80:80 --name letsencrypt \
