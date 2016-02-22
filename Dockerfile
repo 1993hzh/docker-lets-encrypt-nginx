@@ -10,6 +10,6 @@ RUN  git clone https://github.com/letsencrypt/letsencrypt /letsencrypt
 COPY cli.ini /etc/letsencrypt/cli.ini
 
 RUN cd /letsencrypt \
-    && ./letsencrypt-auto --config /etc/letsencrypt/cli.ini
+    && ./letsencrypt-auto certonly --config /etc/letsencrypt/cli.ini
 
 RUN service nginx start
