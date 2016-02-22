@@ -1,4 +1,4 @@
-FROM jpetazzo/dind:latest
+FROM accident/dind:latest
 
 RUN apt-get -y update \
     && apt-get install -y nginx
