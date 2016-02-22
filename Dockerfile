@@ -2,17 +2,16 @@ FROM nginx:latest
 
 RUN service nginx stop
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY cli.ini /etc/letsencrypt/cli.ini
 
 RUN apt-get update \
     && apt-get install -y git-core
 
-RUN  git clone https://github.com/letsencrypt/letsencrypt /letsencrypt
-COPY cli.ini /etc/letsencrypt/cli.ini
+RUN  apt-get install docker-engine
 
-RUN echo nameserver 223.5.5.5 >> /etc/resolv.conf \
-    && echo nameserver 8.8.8.8 >> /etc/resolv.conf
-
-RUN cd /letsencrypt \
-    && ./letsencrypt-auto certonly --config /etc/letsencrypt/cli.ini
-
+RUN docker run -it --rm -p 443:443 -p 80:80 --name letsencrypt \
+            -v "/etc/letsencrypt:/etc/letsencrypt" \
+            -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
+            quay.io/letsencrypt/letsencrypt:latest certonly --config /etc/letsencrypt/cli.ini
+            
 RUN service nginx start
