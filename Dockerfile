@@ -12,9 +12,8 @@ RUN apt-get update -y \
 
 RUN apt-get install -y docker-engine
 
-RUN usermod -aG docker root \
-    && service docker start \
-    && newgrp docker
+RUN cat /etc/profile \
+    && cat ~/.bash_profile
 RUN docker info
             
 RUN service nginx start
