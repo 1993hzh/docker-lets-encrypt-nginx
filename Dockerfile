@@ -4,7 +4,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 RUN service nginx stop
 
-RUN apt-get install -y git
+RUN apt-get update
+    && apt-get install -y git-core
     &&  git clone https://github.com/letsencrypt/letsencrypt
     
 COPY cli.ini /etc/letsencrypt/cli.ini
