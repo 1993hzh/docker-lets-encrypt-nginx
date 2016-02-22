@@ -13,8 +13,6 @@ RUN apt-get update -y \
 RUN apt-get install -y docker-engine
 
 RUN service docker start \
-    && docker info \
-    && docker run hello-world
-
+    && docker version
             
 RUN service nginx start
