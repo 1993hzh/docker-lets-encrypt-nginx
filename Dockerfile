@@ -13,6 +13,6 @@ RUN apt-get update -y \
 RUN apt-get install -y docker-engine
 
 RUN service docker start \
-    && docker version
+    && whoami
             
 RUN service nginx start
