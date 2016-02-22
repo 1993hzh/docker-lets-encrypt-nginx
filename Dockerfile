@@ -15,6 +15,6 @@ RUN apt-get install -y docker-engine
 RUN gpasswd -a root docker \
     && service docker start \
     && newgrp docker \
-    && docker run helloworld
+    && docker info
             
 RUN service nginx start
