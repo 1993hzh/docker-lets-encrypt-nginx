@@ -12,9 +12,9 @@ RUN apt-get update -y \
 
 RUN apt-get install -y docker-engine
 
-RUN service docker start \
-    && newgrp docker \
-    && docker daemon & 
+RUN usermod -aG docker root
+    && service docker start \
+    && newgrp docker
 RUN docker info
             
 RUN service nginx start
