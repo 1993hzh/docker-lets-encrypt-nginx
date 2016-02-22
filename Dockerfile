@@ -1,11 +1,10 @@
 FROM centos:latest
     
-RUN echo '[nginx]\n\
-    name=nginx repo\n\
-    baseurl=http://nginx.org/packages/centos/7/x86_64/\n\
-    gpgcheck=0\n\
-    enabled=1\n'\
-    >> /etc/yum.repos.d/nginx.repo
+RUN echo "[nginx]" >> /etc/yum.repos.d/nginx.repo \
+    && echo "name=nginx repo" >> /etc/yum.repos.d/nginx.repo \
+    && echo "baseurl=http://nginx.org/packages/centos/7/x86_64/" >> /etc/yum.repos.d/nginx.repo \
+    && echo "gpgcheck=0" >> /etc/yum.repos.d/nginx.repo \
+    && echo "enabled=1" >> /etc/yum.repos.d/nginx.repo
     
 RUN yum install -y nginx
 
