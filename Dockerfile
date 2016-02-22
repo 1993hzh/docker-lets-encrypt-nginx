@@ -1,6 +1,6 @@
 FROM centos:latest
 
-RUN cat > /etc/yum.repos.d/nginx.repo << EOL
+RUN cat > /etc/yum.repos.d/nginx.repo << EOL \
     [nginx] \
     name=nginx repo \
     baseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \
