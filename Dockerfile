@@ -1,17 +1,22 @@
-FROM nginx:latest
+FROM centos:latest
+
+RUN touch /etc/yum.repos.d/nginx.repo \
+    && echo "[nginx]
+        name=nginx repo
+        baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+        gpgcheck=0
+        enabled=1" >> /etc/yum.repos.d/nginx.repo
+RUN yum install -y nginx
 
 RUN service nginx stop
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY cli.ini /etc/letsencrypt/cli.ini
 
-RUN apt-get update -y \
-    && apt-get install -y apt-transport-https ca-certificates \
-    && apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D \
-    && echo deb https://apt.dockerproject.org/repo debian-jessie main >> /etc/apt/sources.list.d/docker.list \
-    && apt-get -y update \
-    && apt-get install -y docker-engine
+RUN yum update -y \
+    && curl -fsSL https://get.docker.com/ | sh \
+    && service docker start
 
-RUN docker daemon
+RUN docker info
 # RUN cat /etc/profile \
 #     && cat ~/.bash_profile
 # RUN docker info
