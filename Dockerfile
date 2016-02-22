@@ -12,7 +12,8 @@ RUN apt-get update -y \
 
 RUN apt-get install -y docker-engine
 
-RUN service docker start \
+RUN docker -d & \
+    && service docker start \
     && newgrp docker
 RUN docker info
             
