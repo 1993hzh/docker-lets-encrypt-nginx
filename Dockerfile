@@ -9,6 +9,10 @@ RUN apt-get update \
 RUN  git clone https://github.com/letsencrypt/letsencrypt /letsencrypt
 COPY cli.ini /etc/letsencrypt/cli.ini
 
+RUN mv /etc/resolv.conf /etc/resolv.conf.backup \
+    && cat /etc/resolv.conf nameserver 223.5.5.5
+    && cat /etc/resolv.conf nameserver 8.8.8.8
+
 RUN cd /letsencrypt \
     && ./letsencrypt-auto certonly --config /etc/letsencrypt/cli.ini
 
